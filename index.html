@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* Resetting margins and paddings for all elements, setting box-sizing to border-box */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Styling for the preloader section */
         .preloader {
-            position: fixed;
+            position: fixed; /* Fixed positioning to cover the entire screen */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: white;
-            z-index: 9999;
+            background-color: white; /* White background color */
+            z-index: 9999; /* Ensuring it's on top of other elements */
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: center; /* Centering content vertically */
+            justify-content: center; /* Centering content horizontally */
         }
 
+        /* Dummy SVG element used to define the filter */
         .liquid {
             width: 0;
             height: 0;
         }
 
+        /* Styling for the loader container */
         .loader {
             position: relative;
             width: 250px;
             height: 250px;
-            filter: url(#gooey);
+            filter: url(#gooey); /* Applying the gooey filter */
         }
 
+        /* Styling for each loader span element */
         .loader span {
             position: absolute;
             left: 0;
@@ -44,52 +48,56 @@
             width: 100%;
             height: 100%;
             display: inline-block;
-            transform: rotate(calc(45deg * var(--i)));
+            transform: rotate(calc(45deg * var(--i))); /* Rotating each span based on the --i variable */
         }
 
+        /* Styling for the before pseudo-element of each span */
         .loader span::before {
             content: "";
             position: absolute;
             top: 0;
-            left: calc(50% - 20px);
+            left: calc(50% - 20px); /* Centering the circle horizontally */
             width: 40px;
             height: 40px;
-            background-color: blue;
-            border-radius: 99px;
-            box-shadow: 0 0 30px blue;
+            background-color: blue; /* Blue color for the circle */
+            border-radius: 99px; /* Making the circle round */
+            box-shadow: 0 0 30px blue; /* Adding a blue glow */
         }
 
+        /* Additional styling and animation for rotating spans */
         .loader span.rotate {
-            animation: rounded 4s ease-in-out infinite;
-            animation-delay: calc(-0.2s * var(--j));
+            animation: rounded 4s ease-in-out infinite; /* Infinite rotation animation */
+            animation-delay: calc(-0.2s * var(--j)); /* Staggering the animation delays */
         }
 
+        /* Keyframes for the rotation animation */
         @keyframes rounded {
             0% {
                 transform: rotate(0deg);
             }
-
             100% {
                 transform: rotate(360deg);
             }
-
         }
     </style>
 </head>
-
 <body>
+    <!-- Preloader section -->
     <section class="preloader">
+        <!-- SVG used to define the gooey filter -->
         <svg class="liquid"> 
             <filter id="gooey"> 
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" /> 
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" /> <!-- Blurring the source graphic -->
                 <feColorMatrix values="
                     1 0 0 0 0
                     0 1 0 0 0
                     0 0 1 0 0
-                    0 0 0 20 -10" />
+                    0 0 0 20 -10" /> <!-- Adjusting the color matrix for the gooey effect -->
             </filter> 
         </svg>
+        <!-- Loader container -->
         <div class="loader">
+            <!-- Loader span elements with custom properties -->
             <span style="--i: 1;"></span>
             <span style="--i: 2;"></span>
             <span style="--i: 3;"></span>
@@ -106,5 +114,4 @@
         </div>
     </section>
 </body>
-
 </html>
