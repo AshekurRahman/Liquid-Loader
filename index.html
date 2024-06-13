@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .liquid {
+            width: 0;
+            height: 0;
+        }
+
+        .loader {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            filter: url(#gooey);
+        }
+
+        .loader span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            transform: rotate(calc(45deg * var(--i)));
+        }
+
+        .loader span::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: calc(50% - 20px);
+            width: 40px;
+            height: 40px;
+            background-color: blue;
+            border-radius: 99px;
+            box-shadow: 0 0 30px blue;
+        }
+
+        .loader span.rotate {
+            animation: rounded 4s ease-in-out infinite;
+            animation-delay: calc(-0.2s * var(--j));
+        }
+
+        @keyframes rounded {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <section class="preloader">
+        <svg class="liquid"> 
+            <filter id="gooey"> 
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" /> 
+                <feColorMatrix values="
+                    1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 20 -10" />
+            </filter> 
+        </svg>
+        <div class="loader">
+            <span style="--i: 1;"></span>
+            <span style="--i: 2;"></span>
+            <span style="--i: 3;"></span>
+            <span style="--i: 4;"></span>
+            <span style="--i: 5;"></span>
+            <span style="--i: 6;"></span>
+            <span style="--i: 7;"></span>
+            <span style="--i: 8;"></span>
+            <span class="rotate" style="--j: 0;"></span>
+            <span class="rotate" style="--j: 1;"></span>
+            <span class="rotate" style="--j: 2;"></span>
+            <span class="rotate" style="--j: 3;"></span>
+            <span class="rotate" style="--j: 4;"></span>
+        </div>
+    </section>
+</body>
+
+</html>
